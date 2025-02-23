@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="C:\Users\Lenovo\Desktop\goal tester\static\styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Welcome, {{ session['username'] }}</h2>
+        <form method="POST" action="/add_goal">
+            <input type="text" name="goal" placeholder="Enter your goal" required>
+            <button type="submit">Add Goal</button>
+        </form>
+
+        <h3>Your Goals</h3>
+        <ul>
+            {% for goal in goals %}
+                <li>
+                    {{ goal[2] }} 
+                    {% if not goal[3] %}
+                        <a href="/complete_goal">✅ Complete</a>
+                    {% endif %}
+                    <a href="/delete_goal">❌ Delete</a>
+                </li>
+            {% endfor %}
+        </ul>
+        <a href="/logout">Logout</a>
+    </div>
+</body>
+</html>
